@@ -67,7 +67,7 @@ void main(int argc, char **argv) {
     return;
   }
 
-  // Allocate memory for the first array
+  // Allocate memory for the second array
   int **matrix2 = allocate2DArray(n, m);
 
   if (matrix2 == NULL) {
