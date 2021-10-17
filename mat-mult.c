@@ -36,16 +36,45 @@ int validateArguments(int argc, char **argv, int *m, int *n, int *seed) {
   return 1;
 }
 
+int** allocate2DArray(int i, int j) {
+  int **matrix = malloc(i * sizeof(int*));
+  if (matrix == NULL) return NULL;
+
+  for (int k = 0; k < i; k++) {
+    matrix[k] = malloc(j * sizeof(int));
+    if (matrix[k] == NULL) return NULL;
+  }
+
+  return matrix;
+}
+
 void main(int argc, char **argv) {
   int m, n, seed;
 
   if(!validateArguments(argc, argv, &m, &n, &seed)) {
-      printf("Returning\n");
+      printf("Exiting...\n");
       return;
     }
 
     // Set the seed according to the command line argument
     srand(seed);
+
+    // Allocate memory for the first array
+  int **matrix1 = allocate2DArray(m, n);
+
+  if (matrix1 == NULL) {
+    printf("An error occured while allocating memory for matrix1");
+    return;
+  }
+
+  // Allocate memory for the first array
+  int **matrix2 = allocate2DArray(n, m);
+
+  if (matrix2 == NULL) {
+    printf("An error occured while allocating memory for matrix1");
+    return;
+  }
+
 
   return;
 }
